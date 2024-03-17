@@ -17,18 +17,21 @@ export class CadastroComponent {
     senha: new FormControl(''),
     confirmarSenha: new FormControl('')
   })
-  arrayUsuarios: { email: string, senha: string }[] = []
+  arrayUsuarios: any;
   cadastrar() {
     if (this.form.value.nome && this.form.value.email && this.form.value.dataNascimento && this.form.value.senha && this.form.value.confirmarSenha && (this.form.value.senha === this.form.value.confirmarSenha)) {
       const usuario = {
         email: this.form.value.email,
         senha: this.form.value.senha
       }
-      this.arrayUsuarios.push(usuario)
       let usuariosCadastrados = localStorage.getItem("usuariosCadastrados")
       if (usuariosCadastrados) {
         JSON.parse(usuariosCadastrados)
+        this.arrayUsuarios = Array.from(JSON.parse(usuariosCadastrados))
+      } else {
+        this.arrayUsuarios = []
       }
+      this.arrayUsuarios.push(usuario)
       localStorage.setItem("usuariosCadastrados", JSON.stringify(this.arrayUsuarios))
       alert("Cadastro realizado com sucesso")
     } else {

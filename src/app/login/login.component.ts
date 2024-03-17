@@ -24,14 +24,18 @@ export class LoginComponent {
     }
   }
   alterarSenha() {
-    let usuariosParsed = JSON.parse(this.usuariosCadastrados)
-    let arrayUsuarios = Array.from(usuariosParsed)
-    let usuario: any = arrayUsuarios.find((usuario: any) => (usuario.email == this.login.email))
-    usuario.senha = "a1b2c4d4"
-    this.login.senha = "a1b2c4d4"
-    localStorage.setItem("usuariosCadastrados", JSON.stringify(arrayUsuarios))
-    this.usuariosCadastrados = JSON.stringify(arrayUsuarios)
-    alert("Prossiga utilizando a nova senha: a1b2c4d4")
+    if (this.login.email && this.usuariosCadastrados?.includes('{"email":"' + this.login.email)) {
+      let usuariosParsed = JSON.parse(this.usuariosCadastrados)
+      let arrayUsuarios = Array.from(usuariosParsed)
+      let usuario: any = arrayUsuarios.find((usuario: any) => (usuario.email == this.login.email))
+      usuario.senha = "a1b2c4d4"
+      this.login.senha = "a1b2c4d4"
+      localStorage.setItem("usuariosCadastrados", JSON.stringify(arrayUsuarios))
+      this.usuariosCadastrados = JSON.stringify(arrayUsuarios)
+      alert("Prossiga utilizando a nova senha: a1b2c4d4")
+    } else {
+      alert("E-mail inválido")
+    }
   }
   irParaCadastro() {
     this.router.navigate(['/cadastro'])
