@@ -1,0 +1,18 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<ul>
+    <li>Nome: {{nome}}</li>
+    <li>E-mail: {{email}}</li>
+    <li>Peso: {{peso}} kg</li>
+    <li>Altura: {{altura | converterAltura}} m</li>
+    <li>Código do usuário: {{codigoUsuario}}</li>
+    <li>Idade: {{idade}}</li>
+    <li>Localização:
+        <form (ngSubmit)="pesquisarCep()" [formGroup]="form">
+            <label for="cep">Digite seu CEP: </label>
+            <input type="string" name="cep" formControlName="cep"/>
+            <button type="submit">Pesquisar</button>
+        </form>
+        <p>{{cep.logradouro}}, {{cep.complemento}} - {{cep.bairro}} - {{cep.localidade}}/{{cep.uf}}</p>
+    </li>
+</ul>

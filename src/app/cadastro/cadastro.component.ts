@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,14 +16,22 @@ export class CadastroComponent {
     email: new FormControl(''),
     dataNascimento: new FormControl(''),
     senha: new FormControl(''),
-    confirmarSenha: new FormControl('')
+    confirmarSenha: new FormControl(''),
+    peso: new FormControl(''),
+    altura: new FormControl(''),
+    codigoUsuario: new FormControl('')
   })
   arrayUsuarios: any;
   cadastrar() {
-    if (this.form.value.nome && this.form.value.email && this.form.value.dataNascimento && this.form.value.senha && this.form.value.confirmarSenha && (this.form.value.senha === this.form.value.confirmarSenha)) {
+    if (this.form.value.nome && this.form.value.email && this.form.value.dataNascimento && this.form.value.senha && this.form.value.confirmarSenha && this.form.value.peso && this.form.value.altura && this.form.value.codigoUsuario && (this.form.value.senha === this.form.value.confirmarSenha)) {
       const usuario = {
         email: this.form.value.email,
-        senha: this.form.value.senha
+        senha: this.form.value.senha,
+        nome: this.form.value.nome,
+        dataNascimento: this.form.value.dataNascimento,
+        peso: this.form.value.peso,
+        altura: this.form.value.altura,
+        codigoUsuario: this.form.value.codigoUsuario
       }
       let usuariosCadastrados = localStorage.getItem("usuariosCadastrados")
       if (usuariosCadastrados) {
@@ -38,7 +47,7 @@ export class CadastroComponent {
       alert("Preencha todos os campos e verifique se as senhas correspondem")
     }
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router, private appComponent: AppComponent) { }
   voltar() {
     this.router.navigate(['/login'])
   }

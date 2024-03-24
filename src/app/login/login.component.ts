@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,34 @@ export class LoginComponent {
     email: '',
     senha: ''
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router, private appComponent: AppComponent) { }
   usuariosCadastrados: any = localStorage.getItem("usuariosCadastrados")
   entrar() {
-    if (this.usuariosCadastrados?.includes('{"email":"' + this.login.email + '","senha":"' + this.login.senha + '"}')) {
+    if (this.usuariosCadastrados?.includes('{"email":"' + this.login.email + '","senha":"' + this.login.senha + '","nome":"')) {
+      this.appComponent.email = this.login.email
+      let usuariosParsed = JSON.parse(this.usuariosCadastrados)
+      let arrayUsuarios = Array.from(usuariosParsed)
+      let usuario: any = arrayUsuarios.find((usuario: any) => (usuario.email == this.login.email))
+      this.appComponent.nome = usuario.nome
+      let data = new Date()
+      let dataNascimento = new Date(usuario.dataNascimento)
+      let ano = data.getFullYear()
+      let mes = data.getMonth()
+      let dia = data.getDate()
+      let anoNascimento = dataNascimento.getFullYear()
+      let mesNascimento = dataNascimento.getMonth()
+      let diaNascimento = dataNascimento.getDate()
+      function calcularIdade(ano: number, mes: number, dia: number, anoNascimento: number, mesNascimento: number, diaNascimento: number) {
+        if (mesNascimento > mes || (mesNascimento == mes && diaNascimento > dia)) {
+          return ano - anoNascimento - 1
+        } else {
+          return ano - anoNascimento
+        }
+      }
+      this.appComponent.idade = calcularIdade(ano, mes, dia, anoNascimento, mesNascimento, diaNascimento)
+      this.appComponent.peso = usuario.peso
+      this.appComponent.altura = usuario.altura
+      this.appComponent.codigoUsuario = usuario.codigoUsuario
       this.router.navigate(['/home'])
     } else {
       alert("Usuário ou senha inválidos")
