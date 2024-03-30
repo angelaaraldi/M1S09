@@ -1,11 +1,11 @@
 <div class="login">
     <form (ngSubmit)="entrar()" #loginForm="ngForm">
         <div class="elemento-formulario">
-            <label for="email">E-mail</label>
+            <label for="email">E-mail:</label>
             <input type="email" name="email" [(ngModel)]="login.email" #email="ngModel" />
         </div>
         <div class="elemento-formulario">
-            <label for="senha">Senha</label>
+            <label for="senha">Senha:</label>
             <input type="password" name="senha" [(ngModel)]="login.senha" #senha="ngModel" />
         </div>
         <div class="botoes-formulario">

@@ -1,0 +1,16 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+@mixin botoes-formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+@mixin elemento-formulario {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}

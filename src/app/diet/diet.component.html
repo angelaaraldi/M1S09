@@ -2,14 +2,16 @@
 <app-sidebar></app-sidebar>
 <h2>Alimentos</h2>
 <form (ngSubmit)="pesquisarAlimento()" [formGroup]="form">
-    <label for="alimento" >Pesquise por um alimento: </label>
-    <input type="text" name="alimento" formControlName="alimento"/>
+    <label for="alimento">Pesquise por um alimento: </label>
+    <input type="text" name="alimento" formControlName="alimento" />
     <button type="submit">Pesquisar</button>
 </form>
-<div *ngFor="let item of alimentos" (click)="abrirDetalhes(item.name)">
-    <img src="{{item.imageLink}}" alt="{{item.name}}" width="500px">
-    <h3>{{item.name}}</h3>
-    <p>{{item.description}}</p>
+<div class="div-todos-os-itens">
+    <div class="div-um-item" *ngFor="let item of alimentos" (click)="abrirDetalhes(item.name)">
+        <img src="{{item.imageLink}}" alt="{{item.name}}" width="200px">
+        <h3>{{item.name}}</h3>
+        <p>{{item.description}}</p>
+    </div>
 </div>
 <a href="https://bvsms.saude.gov.br/bvs/publicacoes/guia_alimentar_bolso2.pdf">Para mais informações, acesse o guia
     alimentar do Ministério da Saúde</a>

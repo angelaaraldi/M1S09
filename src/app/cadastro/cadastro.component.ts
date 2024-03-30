@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './cadastro.component.html',
-  styleUrl: './cadastro.component.css'
+  styleUrl: './cadastro.component.scss'
 })
 export class CadastroComponent {
   form = new FormGroup({
-    nome: new FormControl(''),
-    email: new FormControl(''),
-    dataNascimento: new FormControl(''),
-    senha: new FormControl(''),
-    confirmarSenha: new FormControl(''),
-    peso: new FormControl(''),
-    altura: new FormControl(''),
-    codigoUsuario: new FormControl('')
+    nome: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    dataNascimento: new FormControl('', Validators.required),
+    senha: new FormControl('', Validators.required),
+    confirmarSenha: new FormControl('', Validators.required),
+    peso: new FormControl('', Validators.required),
+    altura: new FormControl('', Validators.required),
+    codigoUsuario: new FormControl('', Validators.required)
   })
   arrayUsuarios: any;
   cadastrar() {

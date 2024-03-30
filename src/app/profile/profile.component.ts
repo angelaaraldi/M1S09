@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConverterAlturaPipe } from '../converter-altura.pipe';
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
@@ -12,12 +12,12 @@ import { AddressService } from '../address.service';
   standalone: true,
   imports: [FormsModule, ConverterAlturaPipe, HeaderComponent, SidebarComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.scss'
 })
 
 export class ProfileComponent {
   constructor(private appComponent: AppComponent, private addressService: AddressService) { }
-  form = new FormGroup({ cep: new FormControl('') })
+  form = new FormGroup({ cep: new FormControl('', Validators.required) })
   email = this.appComponent.email
   nome = this.appComponent.nome
   idade = this.appComponent.idade

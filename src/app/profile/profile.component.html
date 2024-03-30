@@ -1,18 +1,23 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
 <ul>
-    <li>Nome: {{nome}}</li>
-    <li>E-mail: {{email}}</li>
-    <li>Peso: {{peso}} kg</li>
-    <li>Altura: {{altura | converterAltura}} m</li>
-    <li>Código do usuário: {{codigoUsuario}}</li>
-    <li>Idade: {{idade}}</li>
-    <li>Localização:
-        <form (ngSubmit)="pesquisarCep()" [formGroup]="form">
-            <label for="cep">Digite seu CEP: </label>
-            <input type="string" name="cep" formControlName="cep"/>
-            <button type="submit">Pesquisar</button>
-        </form>
-        <p>{{cep.logradouro}}, {{cep.complemento}} - {{cep.bairro}} - {{cep.localidade}}/{{cep.uf}}</p>
-    </li>
+    <li><strong>Nome: </strong>{{nome}}</li>
+    <li><strong>E-mail: </strong>{{email}}</li>
+    <li><strong>Peso: </strong>{{peso}} kg</li>
+    <li><strong>Altura: </strong>{{altura | converterAltura}} m</li>
+    <li><strong>Código do usuário: </strong>{{codigoUsuario}}</li>
+    <li><strong>Idade: </strong>{{idade}}</li>
+    <li><strong>Localização: </strong>{{cep.logradouro}}, {{cep.complemento}} - {{cep.bairro}} -
+        {{cep.localidade}}/{{cep.uf}}</li>
+    <form (ngSubmit)="pesquisarCep()" [formGroup]="form">
+        <label for="cep"><strong>Digite seu CEP: </strong></label>
+        <input type="string" name="cep" formControlName="cep" />
+        <span *ngIf="(form.controls.cep.dirty ||
+            form.controls.cep.touched) &&
+            form.controls.cep.errors &&
+            form.controls.cep.errors['required']">
+            Preenchimento obrigatório
+        </span>
+        <button type="submit">Pesquisar</button>
+    </form>
 </ul>

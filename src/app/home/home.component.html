@@ -1,3 +1,52 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
 <p>Seja bem-vindo(a)!</p>
+<div class="card flex justify-content-center">
+    <p-button (click)="mostrarDialog()" icon="pi pi-external-link" label="Adicionar atividade"></p-button>
+    <p-dialog header="Adicionar atividade" [(visible)]="visivel" [style]="{width: '50vw'}">
+        <form (ngSubmit)="salvarAtividade()" [formGroup]="form">
+            <label for="tipo">Tipo de atividade realizada: </label>
+            <select id="tipo" formControlName="tipo">
+                <option value="Resistência">Resistência</option>
+                <option value="Força">Força</option>
+                <option value="Flexibilidade">Flexibilidade</option>
+                <option value="Equilíbrio">Equilíbrio</option>
+            </select>
+            <span *ngIf="(form.controls.tipo.dirty ||
+            form.controls.tipo.touched) &&
+            form.controls.tipo.errors &&
+            form.controls.tipo.errors['required']">
+                Preenchimento obrigatório
+            </span>
+            <br>
+            <label for="data">Data realizada: </label>
+            <input id="data" type="date" formControlName="data">
+            <span *ngIf="(form.controls.data.dirty ||
+            form.controls.data.touched) &&
+            form.controls.data.errors &&
+            form.controls.data.errors['required']">
+                Preenchimento obrigatório
+            </span>
+            <br>
+            <label for="distancia">Distância (opcional): </label>
+            <input id="distancia" type="text" formControlName="distancia">
+            <br>
+            <label for="tempo">Tempo (opcional): </label>
+            <input id="tempo" type="text" formControlName="tempo">
+            <br>
+            <button type="submit">Salvar</button>
+        </form>
+    </p-dialog>
+    <div *ngFor="let item of arrayAtividades">
+        <img *ngIf="item.tipo == 'Resistência'" src="https://cdn.pixabay.com/photo/2013/03/19/18/23/mountain-biking-95032_1280.jpg" width="200px">
+        <img *ngIf="item.tipo == 'Força'" src="https://cdn.pixabay.com/photo/2016/03/27/07/08/man-1282232_1280.jpg" width="200px">
+        <img *ngIf="item.tipo == 'Flexibilidade'" src="https://cdn.pixabay.com/photo/2018/01/01/01/56/yoga-3053487_1280.jpg" width="200px">
+        <img *ngIf="item.tipo == 'Equilíbrio'" src="https://cdn.pixabay.com/photo/2016/11/20/09/05/yoga-1842292_1280.jpg" width="200px">
+        <ul>
+            <li><strong>Tipo da atividade: </strong>{{item.tipo}}</li>
+            <li><strong>Data: </strong>{{item.data}}</li>
+            <li *ngIf="item.distancia"><strong>Distância: </strong>{{item.distancia}}</li>
+            <li *ngIf="item.tempo"><strong>Tempo: </strong>{{item.tempo}}</li>
+        </ul>
+    </div>
+</div>
