@@ -8,7 +8,7 @@ import { AppComponent } from '../app.component';
   standalone: true,
   imports: [HeaderComponent, SidebarComponent, AppComponent],
   templateUrl: './diet-detail.component.html',
-  styleUrl: './diet-detail.component.css'
+  styleUrl: './diet-detail.component.scss'
 })
 export class DietDetailComponent {
   constructor(private appComponent: AppComponent){}

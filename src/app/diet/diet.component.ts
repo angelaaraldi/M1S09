@@ -11,7 +11,7 @@ import { SidebarComponent } from '../shared/components/sidebar/sidebar.component
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, HeaderComponent, SidebarComponent],
   templateUrl: './diet.component.html',
-  styleUrl: './diet.component.css'
+  styleUrl: './diet.component.scss'
 })
 export class DietComponent {
   constructor(private router: Router, private appComponent: AppComponent) { }

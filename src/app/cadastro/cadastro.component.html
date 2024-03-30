@@ -1,36 +1,84 @@
 <div class="cadastro">
     <form (ngSubmit)="cadastrar()" [formGroup]="form">
         <div class="elemento-formulario">
-            <label for="nome">Nome</label>
+            <label for="nome">Nome:</label>
             <input type="text" name="nome" formControlName="nome">
+            <span *ngIf="(form.controls.nome.dirty ||
+            form.controls.nome.touched) &&
+            form.controls.nome.errors &&
+            form.controls.nome.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="email">E-mail</label>
+            <label for="email">E-mail:</label>
             <input type="email" name="email" formControlName="email">
+            <span *ngIf="(form.controls.email.dirty ||
+            form.controls.email.touched) &&
+            form.controls.email.errors &&
+            form.controls.email.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="dataNascimento">Data de nascimento</label>
+            <label for="dataNascimento">Data de nascimento:</label>
             <input type="date" name="dataNascimento" formControlName="dataNascimento">
+            <span *ngIf="(form.controls.dataNascimento.dirty ||
+            form.controls.dataNascimento.touched) &&
+            form.controls.dataNascimento.errors &&
+            form.controls.dataNascimento.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="senha">Senha</label>
+            <label for="senha">Senha:</label>
             <input type="password" name="senha" formControlName="senha">
+            <span *ngIf="(form.controls.senha.dirty ||
+            form.controls.senha.touched) &&
+            form.controls.senha.errors &&
+            form.controls.senha.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="confirmarSenha">Confirmar senha</label>
+            <label for="confirmarSenha">Confirmar senha:</label>
             <input type="password" name="confirmarSenha" formControlName="confirmarSenha">
+            <span *ngIf="(form.controls.confirmarSenha.dirty ||
+            form.controls.confirmarSenha.touched) &&
+            form.controls.confirmarSenha.errors &&
+            form.controls.confirmarSenha.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="peso">Peso (kg)</label>
+            <label for="peso">Peso (kg):</label>
             <input type="number" name="peso" formControlName="peso">
+            <span *ngIf="(form.controls.peso.dirty ||
+            form.controls.peso.touched) &&
+            form.controls.peso.errors &&
+            form.controls.peso.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="altura">Altura (cm)</label>
+            <label for="altura">Altura (cm):</label>
             <input type="number" name="altura" formControlName="altura">
+            <span *ngIf="(form.controls.altura.dirty ||
+            form.controls.altura.touched) &&
+            form.controls.altura.errors &&
+            form.controls.altura.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="elemento-formulario">
-            <label for="codigoUsuario">Código do usuário</label>
+            <label for="codigoUsuario">Código do usuário:</label>
             <input type="text" name="codigoUsuario" formControlName="codigoUsuario">
+            <span *ngIf="(form.controls.nome.dirty ||
+            form.controls.codigoUsuario.touched) &&
+            form.controls.codigoUsuario.errors &&
+            form.controls.codigoUsuario.errors['required']">
+                Preenchimento obrigatório
+            </span>
         </div>
         <div class="botoes-formulario">
             <button class="entrar" type="submit">Cadastrar</button>
