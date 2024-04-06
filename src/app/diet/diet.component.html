@@ -1,5 +1,6 @@
 <app-header></app-header>
-<app-sidebar></app-sidebar>
+<app-sidebar style="width: 100px;"></app-sidebar>
+<div style="margin-left: 100px;">
 <h2>Alimentos</h2>
 <form (ngSubmit)="pesquisarAlimento()" [formGroup]="form">
     <label for="alimento">Pesquise por um alimento: </label>
@@ -7,7 +8,7 @@
     <button type="submit">Pesquisar</button>
 </form>
 <div class="div-todos-os-itens">
-    <div class="div-um-item" *ngFor="let item of alimentos" (click)="abrirDetalhes(item.name)">
+    <div class="div-um-item" *ngFor="let item of alimentos" (click)="abrirDetalhes(item.id)">
         <img src="{{item.imageLink}}" alt="{{item.name}}" width="200px">
         <h3>{{item.name}}</h3>
         <p>{{item.description}}</p>
@@ -15,3 +16,4 @@
 </div>
 <a href="https://bvsms.saude.gov.br/bvs/publicacoes/guia_alimentar_bolso2.pdf">Para mais informações, acesse o guia
     alimentar do Ministério da Saúde</a>
+ </div>   

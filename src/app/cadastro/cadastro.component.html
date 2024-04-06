@@ -73,7 +73,7 @@
         <div class="elemento-formulario">
             <label for="codigoUsuario">Código do usuário:</label>
             <input type="text" name="codigoUsuario" formControlName="codigoUsuario">
-            <span *ngIf="(form.controls.nome.dirty ||
+            <span *ngIf="(form.controls.codigoUsuario.dirty ||
             form.controls.codigoUsuario.touched) &&
             form.controls.codigoUsuario.errors &&
             form.controls.codigoUsuario.errors['required']">
