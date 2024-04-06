@@ -5,11 +5,13 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { DietComponent } from './diet/diet.component';
 import { DietDetailComponent } from './diet-detail/diet-detail.component';
 import { ProfileComponent } from './profile/profile.component';
+import { authGuard } from './shared/shared/guardas/auth.guard';
+import { authIdGuard } from './shared/shared/guardas/auth-id.guard';
 
 export const routes: Routes = [
     {
         path: "",
-        redirectTo: "home",
+        redirectTo: "login",
         pathMatch: "full"
     },
     {
@@ -18,7 +20,8 @@ export const routes: Routes = [
     },
     {
         path: "home",
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [authGuard]
     },
     {
         path: "cadastro",
@@ -26,13 +29,14 @@ export const routes: Routes = [
     },
     {
         path: "diet",
-        children: [
-            {path: "", component: DietComponent},
-            {path: ":id", component: DietDetailComponent}
-        ]
+        canActivate: [authGuard],
+        canActivateChild: [authIdGuard],
+        loadChildren:
+            () => import('./diet/diet.module').then(m => m.DietModule)
     },
     {
         path: "profile",
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [authGuard]
     }
 ];

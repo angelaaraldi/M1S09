@@ -17,6 +17,10 @@ export class LoginComponent {
   }
   constructor(private router: Router, private appComponent: AppComponent) { }
   usuariosCadastrados: any = localStorage.getItem("usuariosCadastrados")
+  logado: boolean = false
+  ngOnInit(){
+    localStorage.setItem("logado", JSON.stringify(this.logado))
+  }
   entrar() {
     if (this.usuariosCadastrados?.includes('{"email":"' + this.login.email + '","senha":"' + this.login.senha + '","nome":"')) {
       this.appComponent.email = this.login.email
@@ -43,6 +47,9 @@ export class LoginComponent {
       this.appComponent.peso = usuario.peso
       this.appComponent.altura = usuario.altura
       this.appComponent.codigoUsuario = usuario.codigoUsuario
+      localStorage.setItem("usuario", JSON.stringify(usuario))
+      this.logado = true
+      localStorage.setItem("logado", JSON.stringify(this.logado))
       this.router.navigate(['/home'])
     } else {
       alert("Usuário ou senha inválidos")
